@@ -5,8 +5,9 @@ const UserSchema = new mongoose.Schema({
   first_name: { type: String },
   last_name: { type: String },
   email: { type: String },
-  password_hash: { type: String },
-  role: { type: Schema.Types.ObjectId, ref: 'Role' },
+  password: { type: String },
+  rol: { type: Schema.Types.ObjectId, ref: 'Rol' },
+  requests: [{ type: Schema.Types.ObjectId, ref: 'Request' }],
   created_date: { type: String },
   modified_date: { type: String }
 })
@@ -18,8 +19,9 @@ export class UserModel {
   first_name: string
   last_name: string
   email: string
-  password_hash: string
-  role: Int32Array
+  password: string
+  rol: Int32Array
+  request: Int32Array
   created_date: string
   modified_date: string
 }

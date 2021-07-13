@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
 import UserService from '../../services/userService'
+import RolService from '../../services/rolService'
 
 export class AuthenticationToken {
   async veryfyToken (req: Request, res: Response, next: NextFunction) {
@@ -35,11 +36,14 @@ export class AuthenticationToken {
     }
   }
 
-  veryfyRole_Actions (req: Request, res: Response, next: NextFunction) {
-    const user = req.user
+  async veryfyRole_Actions (req: Request, res: Response, next: NextFunction) {
+    const rolId = req.user.role
+    const endPoint = req.url
 
-    if (user.role === 'ADMIN_ROLE') {
+    const isAccess = await RolService.verifyRolAction(rolId, endPoint)
 
+    if (isAccess) {
+      next()
     } else {
       return res.status(401).json({
         ok: false,
@@ -50,7 +54,6 @@ export class AuthenticationToken {
 
       })
     }
-    next() // Is very important for excute of the function
   }
 }
 

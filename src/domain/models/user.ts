@@ -6,8 +6,7 @@ const UserSchema = new mongoose.Schema({
   last_name: { type: String },
   email: { type: String },
   password: { type: String },
-  rol: { type: Schema.Types.ObjectId, ref: 'Rol' },
-  requests: [{ type: Schema.Types.ObjectId, ref: 'Request' }],
+  role: { type: Schema.Types.ObjectId, ref: 'Rol' },
   created_date: { type: String },
   modified_date: { type: String }
 })
@@ -20,7 +19,7 @@ export class UserModel {
   last_name: string
   email: string
   password: string
-  rol: Int32Array
+  role: Int32Array
   request: Int32Array
   created_date: string
   modified_date: string

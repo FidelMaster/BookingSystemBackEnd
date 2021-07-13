@@ -1,10 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
+import ActionSchema from './action'
 
 const RoleSchema = new mongoose.Schema({
   rol_name: { type: String },
-  users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  actions: [{ type: Schema.Types.ObjectId, ref: 'Action' }],
+  actions: [ActionSchema],
   created_date: { type: String },
   modified_date: { type: String }
 })
@@ -12,9 +12,8 @@ const RoleSchema = new mongoose.Schema({
 RoleSchema.plugin(uniqueValidator, { message: 'Error, expected {VALUE} to be unique.' })
 export default RoleSchema
 
-export class UserModel {
+export class RoleModel {
   role_name: string
-  users: Int32Array
   actions: Int32Array
   created_date: string
   modified_date: string

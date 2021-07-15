@@ -1,10 +1,9 @@
 import mongoose, { Schema } from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
 
-
 const RequestSchema = new mongoose.Schema({
-  location: { type: String }
-  isActive: { type: Boolean},
+  location: { type: String },
+  isActive: { type: Boolean },
   user: { type: String },
   state_name: { type: String },
   created_date: { type: String },
